@@ -10,14 +10,19 @@ namespace otium{
 
         class Object{
         public:
-            Object();
+            Object(Object* parent);
             ~Object();
 
             component::Component* addComponent(std::string name);
+            component::Component* getComponent(std::string name);
+
             std::vector<Object*>* getChildren();
+            Object* getParent();
 
         private:
             std::vector<component::Component*> m_components;
+
+            Object* m_parent;
             std::vector<Object*> m_childen;
         };
 

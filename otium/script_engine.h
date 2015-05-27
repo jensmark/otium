@@ -14,7 +14,7 @@ namespace otium{
         ScriptEngine(Engine* engine);
         ~ScriptEngine();
 
-        Script* loadScript(std::string& file);
+        Script* loadScript(std::string& file, std::string& class_name);
 
     private:
         std::vector<Script*> m_scripts;
