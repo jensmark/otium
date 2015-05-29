@@ -7,6 +7,12 @@ include_directories(
     ${INCLUDE_DIR}
     ${PYTHON_INCLUDE_DIR})
 
+##
+#
+# Build Libaries
+#
+##
+
 # Non-platform specific code
 file(GLOB OTIUM_SRC "*.cpp")
 
@@ -42,7 +48,7 @@ if(APPLE OR WIN32 OR UNIX)
     set_target_properties(otium_libary PROPERTIES DEBUG_POSTFIX "d")
 
     # Install on unix systems
-    install(TARGETS otium_libary_static otium_libary DESTINATION otium)
+    install(TARGETS otium_libary_static otium_libary DESTINATION otium/lib)
 
 # If mobile build
 else()
@@ -52,6 +58,15 @@ endif()
 
 ##
 #
-# TODO: Build project compiler
+# Build tools
 #
 ##
+
+link_libraries(otium_libary)
+add_executable(otium-builder tools/otium-builder.cpp)
+
+link_libraries(otium_libary)
+add_executable(otium-compiler tools/otium-compiler.cpp)
+
+# Install on unix systems
+install(TARGETS otium-builder otium-compiler DESTINATION otium/bin)

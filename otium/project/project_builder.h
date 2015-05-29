@@ -11,7 +11,10 @@ namespace otium{
             ProjectBuilder();
             ~ProjectBuilder();
 
-            void create(std::string path);
+            void createNewProject(const std::string& name, const std::string& path);
+
+        private:
+
         };
 
     }
