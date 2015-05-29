@@ -7,12 +7,6 @@ include_directories(
     ${INCLUDE_DIR}
     ${PYTHON_INCLUDE_DIR})
 
-###
-#
-# TODO: The non-platform specific code should be pre-compiled
-#
-###
-
 # Non-platform specific code
 file(GLOB OTIUM_SRC "*.cpp")
 
@@ -36,8 +30,28 @@ if(APPLE OR WIN32 OR UNIX)
     endif()
 
     link_libraries(${PYTHON_LIBRARIES})
-    add_executable(otium platforms/desktop/desktop_main.cpp ${OTIUM_SRC} ${OTIUM_PLATFORM_SRC} ${OTIUM_BINDING_SRC})
 
-elseif(MOBILE)
-# TODO: mobile build
+    # Static libary
+    add_library(otium_libary_static STATIC ${OTIUM_SRC} ${OTIUM_PLATFORM_SRC} ${OTIUM_BINDING_SRC})
+    set_target_properties(otium_libary_static PROPERTIES OUTPUT_NAME otium)
+    set_target_properties(otium_libary_static PROPERTIES DEBUG_POSTFIX "d")
+
+    # Shared Libary
+    add_library(otium_libary SHARED ${OTIUM_SRC} ${OTIUM_PLATFORM_SRC} ${OTIUM_BINDING_SRC})
+    set_target_properties(otium_libary PROPERTIES OUTPUT_NAME otium)
+    set_target_properties(otium_libary PROPERTIES DEBUG_POSTFIX "d")
+
+    # Install on unix systems
+    install(TARGETS otium_libary_static otium_libary DESTINATION otium)
+
+# If mobile build
+else()
+# TODO: mobile builds
 endif()
+
+
+##
+#
+# TODO: Build project compiler
+#
+##
