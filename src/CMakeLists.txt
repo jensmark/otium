@@ -24,13 +24,13 @@ file(GLOB OTIUM_BINDING_SRC "bindings/python/*.cpp")
 
 # If desktop build
 if(APPLE OR WIN32 OR UNIX)
-    file(GLOB OTIUM_DESKTOP_SRC "desktop/*.cpp")
+    file(GLOB OTIUM_DESKTOP_SRC "platforms/desktop/*.cpp")
 
     if(UNIX) # 64-bit only for now.
         if(NOT APPLE)
-            file(GLOB OTIUM_PLATFORM_SRC "desktop/linux_amd64/*.cpp")
+            file(GLOB OTIUM_PLATFORM_SRC "platforms/desktop/linux_amd64/*.cpp")
         else()
-            file(GLOB OTIUM_PLATFORM_SRC "desktop/osx_x86_64/*.cpp")
+            file(GLOB OTIUM_PLATFORM_SRC "platforms/desktop/osx_x86_64/*.cpp")
         endif()
 
     endif()
@@ -62,10 +62,10 @@ endif()
 #
 ##
 
-link_libraries(otium_libary)
+link_libraries(otium_libary_static)
 add_executable(otium-builder tools/otium-builder.cpp)
 
-link_libraries(otium_libary)
+link_libraries(otium_libary_static)
 add_executable(otium-compiler tools/otium-compiler.cpp)
 
 # Install on unix systems
