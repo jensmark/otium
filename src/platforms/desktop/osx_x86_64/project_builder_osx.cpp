@@ -20,12 +20,12 @@ namespace otium{
             std::fstream f;
 
             std::string manifest(folder);
-            f.open(manifest.append("/").append("manifest"), std::ios_base::out);
-            f << defaultManifest();
+            f.open(manifest.append("/").append("manifest.mnf"), std::ios_base::out);
+            f << defaultManifest(name);
             f.close();
 
             std::string scene(folder);
-            f.open(scene.append("/scenes/").append("manifest"), std::ios_base::out);
+            f.open(scene.append("/").append("scene0.scn"), std::ios_base::out);
             f << defaultScene();
             f.close();
         }

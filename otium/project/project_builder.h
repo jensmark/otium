@@ -13,7 +13,7 @@ namespace otium{
 
             void newProject(const std::string& name, const std::string& path);
 
-            std::string defaultManifest();
+            std::string defaultManifest(const std::string& name);
             std::string defaultScene();
         };
 

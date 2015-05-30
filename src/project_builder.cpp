@@ -6,8 +6,18 @@ namespace otium{
         ProjectBuilder::ProjectBuilder() { }
         ProjectBuilder::~ProjectBuilder() { }
 
-        std::string ProjectBuilder::defaultManifest() { return ""; }
-        std::string ProjectBuilder::defaultScene() { return ""; }
+        std::string ProjectBuilder::defaultManifest(const std::string& name) {
+            std::string str = "\n"
+                    "";
+
+            return str;
+        }
+
+        std::string ProjectBuilder::defaultScene() {
+            std::string str = "";
+
+            return str;
+        }
 
     }
 }
